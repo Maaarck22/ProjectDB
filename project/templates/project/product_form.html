@@ -1,0 +1,23 @@
+<!-- templates/project/product_form.html -->
+
+
+
+{% extends 'project/base.html' %}
+
+{% block title %}{{ form.instance.pk|yesno:"Update Product,Create Product" }}{% endblock %}
+
+{% block content %}
+    <h2>{{ form.instance.pk|yesno:"Update Product,Create Product" }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{{ form.instance.pk|yesno:"Update,Create" }}</button>
+    </form>
+    <div>
+        {% for field in form %}
+            {% if field.errors %}
+                <div class="error">{{ field.errors }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

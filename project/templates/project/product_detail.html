@@ -1,0 +1,19 @@
+<!-- templates/project/product_detail.html -->
+{% extends 'project/base.html' %}
+
+{% block title %}{{ product.Product_name }}{% endblock %}
+
+{% block content %}
+<h2>{{ product.Product_name }}</h2>
+<div class="product-detail">
+    {% if product.Image %}
+    <img src="{{ product.Image.url }}" alt="{{ product.Product_name }}" class="product-detail-image">
+    {% endif %}
+    <p><strong>Description:</strong> {{ product.Description }}</p>
+    <p><strong>Category:</strong> {{ product.Category }}</p>
+    <p><strong>Price:</strong> {{ product.Price }}</p>
+    <p><strong>Availability:</strong> {{ product.Availability }}</p>
+</div>
+<a href="{% url 'product_list' %}">Return to product list</a>
+<a href="{% url 'product_update' product.ProductID %}">Update</a>
+{% endblock %}
